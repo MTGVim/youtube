@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MTGVim/youtube/static/css/main.2cb053f4.css",
+    "main.js": "/MTGVim/youtube/static/js/main.b43ffede.js",
+    "index.html": "/MTGVim/youtube/index.html",
+    "main.2cb053f4.css.map": "/MTGVim/youtube/static/css/main.2cb053f4.css.map",
+    "main.b43ffede.js.map": "/MTGVim/youtube/static/js/main.b43ffede.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2cb053f4.css",
+    "static/js/main.b43ffede.js"
+  ]
+}
