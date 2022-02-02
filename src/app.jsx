@@ -1,24 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styles from './app.module.css';
 import VideoDetail from './components/video_detail/video_detail';
 import VideoList from './components/video_list/video_list';
 import SearchHeader from './search_header/serach_header';
 
-function App({ youtube }) {
+const App = ({ youtube }) => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  const selectVideo = (video) => {
+  const selectVideo = useCallback((video) => {
     setSelectedVideo(video);
-  };
-  const search = (query) => {
-    setSelectedVideo(null);
-    youtube
-      .search(query) //
-      .then((videos) => {
-        setVideos(videos);
-      });
-  };
+  }, []);
+  const search = useCallback(
+    (query) => {
+      setSelectedVideo(null);
+      youtube
+        .search(query) //
+        .then((videos) => {
+          setVideos(videos);
+        });
+    },
+    [youtube]
+  );
 
   useEffect(() => {
     youtube
@@ -45,6 +48,6 @@ function App({ youtube }) {
       </section>
     </div>
   );
-}
+};
 
 export default App;
