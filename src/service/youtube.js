@@ -1,30 +1,32 @@
+import axios from 'axios';
+
 class Youtube {
   constructor(key) {
-    this.key = key;
-    this.getRequestOptions = {
-      method: 'GET',
-      redirect: 'follow',
-    };
+    this.youtube = axios.create({
+      baseURL: 'https://youtube.googleapis.com/youtube/v3',
+      params: { key: key },
+    });
   }
   async mostPopular() {
-    return fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=25&regionCode=US&key=${this.key}`,
-      this.requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => result.items)
-      .catch((error) => console.log('error', error));
+    const response = await this.youtube.get('videos', {
+      params: {
+        part: 'snippet',
+        chart: 'mostPopular',
+        maxResults: 25,
+      },
+    });
+    return response.data.items;
   }
   async search(query) {
-    return fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}&type=video&key=${this.key}`,
-      this.requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) =>
-        result.items.map((item) => ({ ...item, id: item.id.videoId }))
-      )
-      .catch((error) => console.log('error', error));
+    const response = await this.youtube.get('search', {
+      params: {
+        part: 'snippet',
+        maxResults: 25,
+        q: query,
+        type: 'video',
+      },
+    });
+    return response.data.items;
   }
 }
 
