@@ -21,7 +21,7 @@ const SearchHeader = ({ onSearch }) => {
     <header className={styles.header}>
       <div className={styles.logo}>
         <img className={styles.img} src="/images/logo.png" alt="logo" />
-        <h1 className={styles.title}>SearchHeader</h1>
+        <h1 className={styles.title}>YouTube</h1>
       </div>
       <input
         className={styles.input}
