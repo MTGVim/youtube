@@ -18,5 +18,5 @@ const VideoDetail = memo(({ video, video: { snippet } }) => (
     <pre className={styles.description}>{snippet.description}</pre>
   </section>
 ));
-
+VideoDetail.displayName = 'VideoDetail';
 export default VideoDetail;
